@@ -29,9 +29,8 @@ class HotSax:
         self.best_loc = np.nan
         self.multiple_discords = multiple_discords
         self.nb_discords = nb_discords
-        self.discords_location = defaultdict()
         if self.multiple_discords:
-            self.all_discords = defaultdict()
+            self.all_discords = defaultdict(float)
         else:
             self.all_discords = None
 
@@ -148,7 +147,7 @@ class HotSax:
         if not isinstance(data, np.ndarray):
             raise InputError('Data must in a numpy array')
 
-        self.data = data
+        self.data = data.copy()
         self.data.shape = (1, -1)
 
     def _normalize_data(self):
